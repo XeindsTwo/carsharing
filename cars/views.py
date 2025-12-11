@@ -1,3 +1,4 @@
+from django.contrib.auth.decorators import login_required
 from django.http import HttpResponse
 from django.shortcuts import render
 
@@ -8,6 +9,7 @@ def index(request):
     context = {'cars': cars}
     return render(request, "index.html", context)
 
+@login_required
 def cars_page(request):
     categories = CarCategory.objects.all()
     context = {'categories': categories}
