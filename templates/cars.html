@@ -2,35 +2,43 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-    <link rel="stylesheet" href="{% static 'style.css' %}">
+  <meta charset="UTF-8">
+  <title>Title</title>
+  <link rel="stylesheet" href="{% static 'style.css' %}">
 </head>
 <body>
-<a class="logout" href="{% url 'logout' %}">Выйти из аккаунта</a>
+{% if user.is_authenticated %}
+  <a class="logout" href="{% url 'logout' %}">Выйти из аккаунта</a>
+{% endif %}
 <ul class="cars__items">
-    {% for category in categories %}
-        <li class="cars__item">
-            <span class="cars__name-category">{{ category.name }}</span>
-            <ul class="cars__list">
-                {% if category.cars.exists %}
-                    {% for car in category.cars.all %}
-                        <li class="cars__card">
-                            <h3 class="cars__name">{{ car.name }}</h3>
-                            {% if car.image %}
-                                <img class="cars__img" src="{{ car.image.url }}" width="600" height="300" alt="">
-                            {% else %}
-                                <img class="cars__img" src="{% static 'img/card-car.jpg' %}" width="600" height="300" alt="">
-                            {% endif %}
-                            <a class="cars__link" href="">Читать подробнее</a>
-                        </li>
-                    {% endfor %}
-                {% else %}
-                    <p>Автомобилей в данной категории ещё нет</p>
+  {% for category in categories %}
+    <li class="cars__item">
+      <span class="cars__name-category">{{ category.name }}</span>
+      <ul class="cars__list">
+        {% if category.cars.exists %}
+          {% for car in category.cars.all %}
+            <li class="cars__card">
+              <h3 class="cars__name">{{ car.name }}</h3>
+              {% if car.image %}
+                <img class="cars__img" src="{{ car.image.url }}" width="600" height="300" alt="">
+              {% else %}
+                <img class="cars__img" src="{% static 'img/card-car.jpg' %}" width="600" height="300" alt="">
+              {% endif %}
+              <div class="cars__actions">
+                {% if user.is_authenticated %}
+                  <button class="cars__link" type="button">Забронировать автомобиль</button>
                 {% endif %}
-            </ul>
-        </li>
-    {% endfor %}
+                <a class="cars__link" href="">Читать подробнее</a>
+              </div>
+            {{ user.username }}
+            </li>
+          {% endfor %}
+        {% else %}
+          <p>Автомобилей в данной категории ещё нет</p>
+        {% endif %}
+      </ul>
+    </li>
+  {% endfor %}
 </ul>
 </body>
 </html>

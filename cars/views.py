@@ -9,12 +9,12 @@ def index(request):
     context = {'cars': cars}
     return render(request, "index.html", context)
 
-@login_required
 def cars_page(request):
     categories = CarCategory.objects.all()
     context = {'categories': categories}
     return render(request, "cars.html", context)
 
+@login_required
 def about(request):
     return HttpResponse("<h2>О сайте</h2>")
 

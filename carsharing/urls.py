@@ -8,6 +8,7 @@ from cars import views
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', views.index, name='home'),
+    path('about/', views.about, name='about'),
     path('cars', views.cars_page, name='cars'),
     path('users/', include('users.urls'))
 ]
