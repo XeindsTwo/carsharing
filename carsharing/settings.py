@@ -38,7 +38,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'cars',
-    'users'
+    'users',
+    'rental'
 ]
 
 MIDDLEWARE = [
@@ -129,5 +130,4 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'uploads') # место, где физиче
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 AUTH_USER_MODEL = 'users.CustomUser'
-
 LOGIN_URL = '/users/login/'

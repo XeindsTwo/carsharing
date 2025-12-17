@@ -7,7 +7,9 @@
     <link rel="stylesheet" href="{% static 'style.css' %}">
 </head>
 <body>
-<a class="logout" href="{% url 'logout' %}">Выйти из аккаунта</a>
+{% if user.is_authenticated %}
+    <a class="logout" href="{% url 'logout' %}">Выйти из аккаунта</a>
+{% endif %}
 <ul class="cars__items">
     {% for category in categories %}
         <li class="cars__item">
@@ -20,9 +22,15 @@
                             {% if car.image %}
                                 <img class="cars__img" src="{{ car.image.url }}" width="600" height="300" alt="">
                             {% else %}
-                                <img class="cars__img" src="{% static 'img/card-car.jpg' %}" width="600" height="300" alt="">
+                                <img class="cars__img" src="{% static 'img/card-car.jpg' %}" width="600" height="300"
+                                     alt="">
                             {% endif %}
-                            <a class="cars__link" href="">Читать подробнее</a>
+                            <div class="cars__links">
+                                <a class="cars__link" href="">Читать подробнее</a>
+                                {% if user.is_authenticated %}
+                                    <button class="cars__link" type="button">Забронировать автомобиль</button>
+                                {% endif %}
+                            </div>
                         </li>
                     {% endfor %}
                 {% else %}

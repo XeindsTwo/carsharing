@@ -48,7 +48,16 @@ ul {
     font-size: 20px;
 }
 
+.cars__links {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+
 .cars__link, .logout {
+    outline: none;
+    border: none;
+    font: inherit;
     font-size: 18px;
     background-color: brown;
     border-radius: 10px;
