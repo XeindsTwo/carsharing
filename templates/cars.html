@@ -28,7 +28,7 @@
                             <div class="cars__links">
                                 <a class="cars__link" href="">Читать подробнее</a>
                                 {% if user.is_authenticated %}
-                                    <button class="cars__link" type="button">Забронировать автомобиль</button>
+                                    <a class="cars__link" href="{% url 'create_booking' car.id %}">Забронировать автомобиль</a>
                                 {% endif %}
                             </div>
                         </li>

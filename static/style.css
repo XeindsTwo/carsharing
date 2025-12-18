@@ -54,9 +54,11 @@ ul {
     gap: 16px;
 }
 
-.cars__link, .logout {
+.cars__link, .logout, .btn {
+    margin-top: 14px;
     outline: none;
     border: none;
+    cursor: pointer;
     font: inherit;
     font-size: 18px;
     background-color: brown;
@@ -69,4 +71,13 @@ ul {
 
 .logout {
     margin: 40px 0;
+}
+
+.status {
+    border-radius: 50px;
+    background-color: #f58200;
+    color: white;
+    padding: 8px 20px;
+    display: inline-block;
+    margin-top: 12px;
 }

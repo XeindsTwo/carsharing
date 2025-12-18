@@ -1,0 +1,33 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Профиль пользователя</title>
+    <link rel="stylesheet" href="{% static 'style.css' %}">
+</head>
+<body>
+<h1>Здравствуйте, {{ user.username }}</h1>
+<a class="logout" href="{% url 'logout' %}">Выйти из аккаунта</a>
+{% if bookings %}
+    <h3>Ваши брони автомобилей:</h3>
+    <ul>
+        {% for booking in bookings %}
+            <li>
+                <b>{{ booking.car.name }}</b> <br>
+                <img class="cars__img" src="{{ booking.car.image.url }}" height="330" width="600" alt="">
+                <p>
+                    Период аренды:
+                    с <span>{{ booking.start_date }}</span>
+                    по <span>{{ booking.end_date }}</span>
+                </p>
+                <span class="status">{{ booking.get_status_display }}</span>
+            </li>
+        {% endfor %}
+    </ul>
+{% else %}
+    <h3>На текущей момент у вас нет броней автомобилей</h3>
+    <a class="btn" href="{% url 'cars' %}">Забронировать авто</a>
+{% endif %}
+</body>
+</html>

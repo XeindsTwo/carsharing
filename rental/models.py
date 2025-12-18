@@ -3,7 +3,6 @@ from django.db import models
 from cars.models import Car
 
 
-# Create your models here.
 class Booking(models.Model):
     class Meta:
         verbose_name = "бронирования авто"  # как отображается для одного объекта (в Django админке)

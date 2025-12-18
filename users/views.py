@@ -1,4 +1,5 @@
 from django.contrib.auth import get_user_model, authenticate, login, logout
+from django.contrib.auth.decorators import login_required
 from django.contrib.auth.forms import UserCreationForm
 from django.shortcuts import render, redirect
 from django.contrib import messages
@@ -13,12 +14,13 @@ def register_view(request):
         form = CreateUserCreationForm(request.POST)
         if form.is_valid():
             user = form.save()
-            login(request, user) # сразу логиним нового пользователя
-            return redirect('/') # редирект на главную страницу
+            login(request, user)  # сразу логиним нового пользователя
+            return redirect('/')  # редирект на главную страницу
 
     else:
-        form = CreateUserCreationForm() # пустая форма для GET-запроса
+        form = CreateUserCreationForm()  # пустая форма для GET-запроса
     return render(request, 'register.html', {"form": form})
+
 
 def login_view(request):
     if request.method == 'POST':
@@ -38,6 +40,21 @@ def login_view(request):
 
     return render(request, 'login.html')
 
+
 def logout_view(request):
     logout(request)
     return redirect('home')
+
+
+@login_required
+def profile_view(request):
+    user = request.user
+    bookings = user.bookings.all()
+
+    return render(
+        request, "profile.html",
+        {
+            'user': user,
+            'bookings': bookings
+        }
+    )
