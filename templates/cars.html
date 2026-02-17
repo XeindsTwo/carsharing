@@ -26,9 +26,10 @@
                                      alt="">
                             {% endif %}
                             <div class="cars__links">
-                                <a class="cars__link" href="">Читать подробнее</a>
+                                <a class="cars__link" href="#" target="_blank">Читать подробнее</a>
                                 {% if user.is_authenticated %}
-                                    <a class="cars__link" href="{% url 'create_booking' car.id %}">Забронировать автомобиль</a>
+                                    <a class="cars__link" href="{% url 'create_booking' car.id %}">Забронировать
+                                        автомобиль</a>
                                 {% endif %}
                             </div>
                         </li>
